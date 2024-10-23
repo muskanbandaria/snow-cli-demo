@@ -1,0 +1,4 @@
+--!jinja
+USE ROLE ACCOUNTADMIN;
+
+DROP DATABASE IF EXISTS {{db_name}};

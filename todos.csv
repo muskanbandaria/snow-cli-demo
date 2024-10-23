@@ -1,0 +1,11 @@
+title,description,category,status
+Learn Snowflake Git Integration, Learn how to use Snowflake GIT integration.,learning,true
+Learn Snowflake CLI, Learn how to use snow cli.,learning,false
+Learn Redpanda CLI, Learn how to use rpk cli.,learning,false
+Learn Snowflake and Streamlit, Learn how to integrate snowflake with streamlit.,learning,false
+Create GitHub Repo, Create GitHub Repository for todo-demo.,code,false
+Todo ID Gen,Use SQLite for Todo ID generation via sequence.,code,false
+Car Service, Get the car to service this weekend.,personal,false
+Buy Groceries,Buy groceries for home before 8pm this evening.,personal,false
+Book Tickets for Movie,Get the movie tickets for Dune2,family,false
+Dockerize Connector,Dockerizer Snowflake Kafka Connector with the Kafka Protobuf Converter,code,true
