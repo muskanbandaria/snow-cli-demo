@@ -1,8 +1,12 @@
-# Snowflake Git Integration: 60-Second Guide for Devs ❄️🐙⏱️
+# Using Snowflake CLI ❄️❄️❄️❄️❄️🐙⏱️❄️❄️❄️❄️
 
-A quick demo of [Snowflake's Git integration](https://docs.snowflake.com/en/developer-guide/git/git-setting-up) , version control for your data workflows in under a minute? You bet! ⚡❄️.
+A quick demo of using few killer features of [SNOW CLI](https://docs.snowflake.com/en/developer-guide/snowflake-cli/index)(`snow`) that will make your everyday Snowflake development tasks at breeze.
 
-This demo uses[SNOW CLI](https://docs.snowflake.com/en/developer-guide/snowflake-cli/index) to perform all tasks from the CLI.
+As part of this quick demo we will see how to use `snow` for,
+
+- [x] [Snowflake's Git integration](https://docs.snowflake.com/en/developer-guide/git/git-setting-up)
+- [x] Deploying [Streamlit in Snowflake](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit)
+- [ ] Setup CI/CD using [Snowflake CLI](https://github.com/Snowflake-Labs/snowflake-cli-action) GitHub Action
 
 ## Pre-requisites
 
