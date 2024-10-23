@@ -1,0 +1,15 @@
+definition_version: "2"
+entities:
+    todos_app:
+        type: streamlit
+        identifier:
+            name: todos_app
+        main_file: streamlit_app.py
+        pages_dir: pages
+        query_warehouse: todo_app_wh
+        stage: todos_app
+        artifacts:
+            - streamlit_app.py
+            - environment.yml
+            - pages
+            - common/data_utils.py
