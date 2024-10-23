@@ -105,6 +105,35 @@ snow sql -q "select * from todos" \
   --schema="$TODO_SCHEMA_NAME"
 ```
 
+## Deploy Streamlit Application
+
+There is simple Streamlit application that is available under [app](./app) directory.
+
+```shell
+cd app
+```
+
+Let us create a schema to deploy the Todo APP,
+
+```shell
+snow sql -q 'create schema if not exists apps' --dbname="$TODO_DB_NAME"
+```
+
+Deploy Streamlit app,
+
+```shell
+snow streamlit deploy --dbname="$TODO_DB_NAME" --schema="apps"
+```
+
+You can use the URL from the output of the successful deployment to access the application.
+
+>[!TIP]
+> You can also get the URL of the application anytime using the command
+>```shell
+> snow streamlit get-url todo_app --dbname=--dbname="$TODO_DB_NAME" --schema="apps"
+> ```
+> You can find the app name in [snowflake.yml](./app/snowflake.yml)
+
 ## Cleanup
 
 ```shell
