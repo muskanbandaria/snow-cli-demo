@@ -35,18 +35,18 @@ export SNOWFLAKE_CONNECTIONS_TRIAL_WAREHOUSE='MY_GIT_WH'
 Set few variables that we can interploate later in the script,
 
 ```shell
-export GIT_REPO_NAME='git_integration_demo'
+export GIT_REPO_NAME='snow_cli_demo'
 export GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 ```
 
 #### Git Integration Demo
 
 ```shell
-#https://github.com/kameshsampath/sf-git-integration-demo.git
+#https://github.com/Snowflake-Labs/snow-cli-demo.git
 snow git setup "$GIT_REPO_NAME"
 ```
 
-* `Repo URL`: https://github.com/kameshsampath/sf-git-integration-demo.git
+* `Repo URL`: https://github.com/Snowflake-Labs/snow-cli-demo.git
 * Select `N` to secret as this`sf-git-integration-demo` for public repo or provide the secret usually the [GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 * Default to create an git API integration
 
@@ -86,7 +86,7 @@ export TODO_DB_NAME='TODO_APP_DB'
 export TODO_SCHEMA_NAME='DATA'
 ```
 
-Setup `kamesh_demo` database and tables,
+Setup TODO APP warehouse, database, schemas and tables,
 
 ```shell
 snow git execute "@$GIT_REPO_NAME/branches/$GIT_BRANCH/todos.sql" \
@@ -97,6 +97,14 @@ snow git execute "@$GIT_REPO_NAME/branches/$GIT_BRANCH/todos.sql" \
   --variable "git_branch='$GIT_BRANCH'"
 ```
 
+Verify and check if objects has been created,
+
+```shell
+snow sql -q "select * from todos" \
+  --dbname="$TODO_DB_NAME" \
+  --schema="$TODO_SCHEMA_NAME"
+```
+
 ## Cleanup
 
 ```shell
@@ -104,8 +112,14 @@ snow git execute "@$GIT_REPO_NAME/branches/$GIT_BRANCH/cleanup.sql" \
   --variable "db_name='$TODO_DB_NAME'"
 ```
 
-Verify clean up
+Verify clean up and the `$TODO_DB_NAME` should be listed,
 
 ```shell
 snow sql -q "SHOW DATABASES"
 ```
+
+> [!TIP]
+> If you are a [jq](https://jqlang.github.io/jq/) fan then use the following query to list the names of the databases
+> ```shell
+> snow sql -q "SHOW DATABASES" --format=json | jq -r '.[].name'
+> ```
