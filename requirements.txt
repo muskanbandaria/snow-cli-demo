@@ -1,0 +1,4 @@
+snowflake
+snowflake.core
+streamlit==1.35.0
+black

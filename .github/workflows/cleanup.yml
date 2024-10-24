@@ -1,0 +1,50 @@
+name: Clean up
+on:
+    workflow_dispatch:
+env:
+    SNOWFLAKE_DEFAULT_CONNECTION_NAME: "workflow"
+    SNOWFLAKE_CONNECTIONS_WORKFLOW_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+    SNOWFLAKE_CONNECTIONS_WORKFLOW_USER: ${{ secrets.SNOWFLAKE_USER }}
+    SNOWFLAKE_CONNECTIONS_WORKFLOW_PRIVATE_KEY_PASSPHRASE:
+        ${{ secrets.PRIVATE_KEY_PASSPHRASE }}
+    SNOWFLAKE_CONNECTIONS_WORKFLOW_PRIVATE_KEY_RAW:
+        ${{ secrets.PRIVATE_KEY_RAW }}
+    GIT_REPO_DB: MY_GIT_REPOS
+    GIT_REPO_SCHEMA: GITHUB
+    GIT_REPO_NAME: snow_cli_demo
+    TODO_APP_NAME: todos_app
+    TODO_APP_WH: TODO_APP_WH
+    TODO_APP_DB: TODO_APP_DB
+    TODO_APP_SCHEMA: APPS
+    TODOS_DATA_SCHEMA: DATA
+jobs:
+    Deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  # todo update to pick the right branch
+                  ref: ${{ env.GITHUB_REF_NAME  }}
+            - uses: Snowflake-Labs/snowflake-cli-action@v1.5
+              with:
+                  cli-version: "latest"
+                  default-config-file-path:
+                      ${{ github.workspace }}/config/config.toml"
+            - name: Check Version and Verify Connection
+              env:
+                  PRIVATE_KEY_PASSPHRASE: ${{ secrets.PRIVATE_KEY_PASSPHRASE }}
+              run: |
+                  snow --version
+                  snow connection test
+                  echo "Using branch $GITHUB_REF_NAME"
+
+            - name: Setup Todos App Database Objects
+              env:
+                  PRIVATE_KEY_PASSPHRASE: ${{ secrets.PRIVATE_KEY_PASSPHRASE }}
+                  GIT_REPO_FQN:
+                      ${{ env.GIT_REPO_DB }}.${{ env.GIT_REPO_SCHEMA }}.${{
+                      env.GIT_REPO_NAME }}
+              run: |
+                  snow git execute "@$GIT_REPO_FQN/branches/$GITHUB_REF_NAME/cleanup.sql" \
+                    --variable "db_name='$TODO_APP_DB'" \
+                    --variable "git_repo_name='$GIT_REPO_FQN'"
