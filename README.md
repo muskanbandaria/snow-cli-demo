@@ -8,11 +8,8 @@ As part of this quick demo we will see how to use `snow` for,
 - [x] Deploying [Streamlit in Snowflake](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit)
 - [ ] Setup CI/CD using [Snowflake CLI](https://github.com/Snowflake-Labs/snowflake-cli-action) GitHub Action
 
-> [!WARNING]
-> Currently the demo works only with SNOW CLI 3.1+. This demo was last tested with 3.1RC4
-> ```shell
-> pip install -U git+https://github.com/snowflakedb/snowflake-cli.git@v3.1.0-rc4
-> ```
+> [!IMPORTANT]
+> Make sure you have installed Snowflake CLI > 3.1.x, for all the demo scenarios to work.
 
 ## Pre-requisites
 
@@ -81,7 +78,7 @@ snow git setup "$GIT_REPO_NAME" \
 * Default to create an git API integration
 
 ```shell
-export GIT_REPO_FQN="$GIT_REPO_DB.$GIT_REPO_NAME.$GITHUB_REPOS_SCHEMA"
+export GIT_REPO_FQN="$GIT_REPO_DB.$GIT_REPO_SCHEMA.$GIT_REPO_NAME"
 ```
 Fetch all branches, tags and commits,
 
@@ -170,9 +167,10 @@ You can use the URL from the output of the successful deployment to access the a
 ## Cleanup
 
 ```shell
-snow git execute "@$GIT_REPO_FQN/branches/$GIT_BRANCH/cleanup.sql" \
+snow git execute "@$GIT_REPO_FQN/branches/$GITHUB_REF_NAME/cleanup.sql" \
   --variable "db_name='$TODO_APP_DB'" \
-  --variable "git_repo_name='$GIT_REPO_FQN'"
+  --variable "git_repo_name='$GIT_REPO_FQN'" \
+  --database "$GIT_REPO_DB"
 ```
 
 It should delete the `$TODO_APP_DB` and the `MY_GIT_REPOS.GITHUB.SNOW_CLI_DEMO` Git repository.
