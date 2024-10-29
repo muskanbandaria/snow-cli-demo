@@ -48,7 +48,7 @@ Create Database,
 
 ```shell
 snow object create database \
-  name="$GIT_REPOS_DATABASE" \
+  name="$GIT_REPO_DB" \
   comment='Database to hold all my Git repositories and related objects'
 ```
 
@@ -58,7 +58,7 @@ Create Schema,
 snow object create schema \
   name="$GITHUB_REPOS_SCHEMA" \
   comment='Schema to hold all GitHub repositories' \
-  --database="$GIT_REPOS_DATABASE"
+  --database="$GIT_REPO_DB"
 ```
 
 
