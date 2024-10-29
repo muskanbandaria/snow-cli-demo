@@ -56,7 +56,7 @@ Create Schema,
 
 ```shell
 snow object create schema \
-  name="$GITHUB_REPOS_SCHEMA" \
+  name="$GIT_REPO_SCHEMA" \
   comment='Schema to hold all GitHub repositories' \
   --database="$GIT_REPO_DB"
 ```
