@@ -36,11 +36,23 @@ export GIT_REPO_SCHEMA='GITHUB'
 export GIT_REPO_WAREHOUSE='MY_GIT_WH'
 ```
 
+Create WareHouse,
+
+```shell
+snow object create warehouse \
+  name="$GIT_REPO_WAREHOUSE" \
+  comment='Warehouse that will be used in this demo.'
+```
+
+Create Database,
+
 ```shell
 snow object create database \
   name="$GIT_REPOS_DATABASE" \
   comment='Database to hold all my Git repositories and related objects'
 ```
+
+Create Schema,
 
 ```shell
 snow object create schema \
@@ -49,11 +61,6 @@ snow object create schema \
   --database="$GIT_REPOS_DATABASE"
 ```
 
-```shell
-snow object create warehouse \
-  name="$GIT_REPO_WAREHOUSE" \
-  comment='Warehouse that will be used in this demo.'
-```
 
 ### Create Git Repos
 
@@ -167,7 +174,7 @@ You can use the URL from the output of the successful deployment to access the a
 ## Cleanup
 
 ```shell
-snow git execute "@$GIT_REPO_FQN/branches/$GITHUB_REF_NAME/cleanup.sql" \
+snow git execute "@$GIT_REPO_FQN/branches/$GIT_BRANCH/cleanup.sql" \
   --variable "db_name='$TODO_APP_DB'" \
   --variable "git_repo_name='$GIT_REPO_FQN'" \
   --database "$GIT_REPO_DB"
