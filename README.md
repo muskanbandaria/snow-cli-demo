@@ -6,7 +6,7 @@ As part of this quick demo we will see how to use `snow` for,
 
 - [x] [Snowflake's Git integration](https://docs.snowflake.com/en/developer-guide/git/git-setting-up)
 - [x] Deploying [Streamlit in Snowflake](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit)
-- [ ] Setup CI/CD using [Snowflake CLI](https://github.com/Snowflake-Labs/snowflake-cli-action) GitHub Action
+- [x] Setup CI/CD using [Snowflake CLI](https://github.com/Snowflake-Labs/snowflake-cli-action) GitHub Action
 
 > [!IMPORTANT]
 > Make sure you have installed Snowflake CLI > 3.1.x, for all the demo scenarios to work.
