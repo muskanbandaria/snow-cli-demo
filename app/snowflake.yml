@@ -12,11 +12,9 @@ entities:
             database: <% ctx.env.TODO_APP_DB %>
             schema: <% ctx.env.TODO_APP_SCHEMA %>
         main_file: streamlit_app.py
-        pages_dir: pages
         query_warehouse: <% ctx.env.TODO_APP_WH %>
         stage: <% ctx.env.TODO_APP_NAME %>
         artifacts:
             - streamlit_app.py
             - environment.yml
-            - pages
             - common/data_utils.py
