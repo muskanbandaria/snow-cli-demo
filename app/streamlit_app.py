@@ -9,7 +9,7 @@ import logging
 
 logger = logging.getLogger("todo_app")
 
-st.markdown("# My TODOS")
+st.markdown("# List of TODOS")
 st.divider()
 st.markdown(
     """A simple TODO application to demonstrate how we can use Streamlit to build a CRUD application. This application gives a quick overview of Streamlit features,
