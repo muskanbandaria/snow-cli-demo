@@ -74,13 +74,12 @@ export GITHUB_REF_NAME="$(git rev-parse --abbrev-ref HEAD)"
 #### Git Integration Demo
 
 ```shell
-#https://github.com/Snowflake-Labs/snow-cli-demo.git
 snow git setup "$GIT_REPO_NAME" \
   --database="$GIT_REPO_DB" \
   --schema="$GIT_REPO_SCHEMA"
 ```
 
-* `Repo URL`: https://github.com/Snowflake-Labs/snow-cli-demo.git
+* `Repo URL`: Your fork of https://github.com/Snowflake-Labs/snow-cli-demo.git
 * Select `N` to secret as this`sf-git-integration-demo` for public repo or provide the secret usually the [GitHub PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 * Default to create an git API integration
 
